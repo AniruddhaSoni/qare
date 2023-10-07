@@ -1,5 +1,5 @@
 "use client";
-
+import Link from 'next/link';
 import React, { useEffect, useRef } from "react";
 import HeroChart from "./HeroChart";
 import Image from "next/image";
@@ -42,7 +42,11 @@ export default function Hero() {
           codes, bridging physical and digital realms, empowering insightful
           campaigns.
         </p>
-        <Button>Get Started</Button>
+        <Link href="/dashboard">
+          <Button>
+           Get Started
+          </Button>
+        </Link>
       </div>
     </div>
   );
