@@ -1,12 +1,20 @@
+"use client";
 import React from 'react'
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input"
-import { link } from 'fs';
-import { url } from 'inspector';
-
+import '../../components/Generated';
+import { useState } from 'react';
+import Generated from '../../components/Generated';
 
 
 const page = () => {
+
+  const [isGeneratedQR, setIsGeneratedQR] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsGeneratedQR(!isGeneratedQR);
+    console.log('clicked');
+  };
   return (
     <div>
       <div className='flex items-center justify-center'>
@@ -29,10 +37,13 @@ const page = () => {
         <div className=' w-1/2'>
         <Input placeholder="https://"/>
         <div className='flex items-center justify-center mt-5'>
-        <Button>Button</Button>
+        <Button onClick={handleButtonClick}>Generate</Button>
+        <div>{isGeneratedQR && <Generated />}</div>
         </div>
         </div>
         </div>
+
+        <div className=''></div>
     </div>
     
   )
