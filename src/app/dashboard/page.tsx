@@ -38,8 +38,8 @@ const page = () => {
         <Input placeholder="https://"/>
         <div className='flex items-center justify-center mt-5'>
         <Button onClick={handleButtonClick}>Generate</Button>
-        <div>{isGeneratedQR && <Generated />}</div>
         </div>
+        <div className='flex item-center justify-center'>{isGeneratedQR && <Generated />}</div>
         </div>
         </div>
 
