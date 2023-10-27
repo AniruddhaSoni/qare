@@ -17,6 +17,7 @@
     "next": "latest",
     "next-themes": "^0.2.1",
     "qr-code-styling": "^1.6.0-rc.1",
+    "qrcode": "^1.5.3",
     "react": "latest",
     "react-dom": "latest",
     "recharts": "^2.8.0",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@types/node": "latest",
+    "@types/qrcode": "^1.5.4",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
