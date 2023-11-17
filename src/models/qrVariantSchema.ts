@@ -1,11 +1,13 @@
 import mongoose from "mongoose";
 
 const QrVariantSchema = new mongoose.Schema({
-  name: String,
-  originalLink: String,
+  uid: String,
+  targetLink: String,
   shortLink: String,
   scanCount: Number,
+  name: String,
+  scanStats: Array,
 });
 
 export const QrVariant =
-  mongoose.models.qrvariant || mongoose.model("qrvariant", QrVariantSchema);
+  mongoose.models.qrVariant || mongoose.model("qrVariant", QrVariantSchema);

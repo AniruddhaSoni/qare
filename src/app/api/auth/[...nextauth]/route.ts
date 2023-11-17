@@ -1,4 +1,4 @@
-import { ConnectMongoDB } from "@/lib/mongoose";
+import { ConnectMongoDB, DisconnectMongoDB } from "@/lib/mongoose";
 import { Users } from "@/models/userSchema";
 import { randomUUID } from "crypto";
 import NextAuth, { NextAuthOptions } from "next-auth";
@@ -19,10 +19,10 @@ const authOptions: NextAuthOptions = {
   callbacks: {
     async signIn({ user }) {
       await ConnectMongoDB();
-      Users.findOne({ email: user.email }).then((data) => {
+      await Users.findOne({ email: user.email }).then(async (data) => {
         if (data == null) {
-          Users.create({
-            uid: randomUUID(),
+          await Users.create({
+            uid: randomUUID().replaceAll("-", ""),
             email: user.email,
             image: user.image,
             name: user.name,
@@ -30,8 +30,17 @@ const authOptions: NextAuthOptions = {
           });
         }
       });
-
+      await DisconnectMongoDB();
       return true;
+    },
+    async session({ session }) {
+      await ConnectMongoDB();
+      await Users.findOne({ email: session.user.email }).then(async (data) => {
+        session.user.uid = data.uid;
+        session.user.id = data.id;
+      });
+
+      return session;
     },
   },
 };

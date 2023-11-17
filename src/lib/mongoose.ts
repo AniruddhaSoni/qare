@@ -7,3 +7,6 @@ export const ConnectMongoDB = async () => {
     return await mongoose.connect(process.env.MONGO_LINK!);
   }
 };
+export const DisconnectMongoDB = async () => {
+  return await mongoose.disconnect();
+};

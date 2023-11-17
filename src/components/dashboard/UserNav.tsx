@@ -5,11 +5,9 @@ import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import Link from "next/link";
@@ -24,7 +22,7 @@ export function UserNav() {
     if (session.status === "unauthenticated") {
       router.push("/");
     }
-  });
+  }, []);
 
   return (
     <DropdownMenu>
@@ -51,13 +49,17 @@ export function UserNav() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Button variant={"ghost"} className="m-0">
+          <Button variant={"ghost"} className="m-0 w-full justify-start">
             <Link href={"/profile"}>Profile</Link>
           </Button>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Button variant={"ghost"} onClick={() => signOut()} className="m-0">
+          <Button
+            variant={"ghost"}
+            onClick={() => signOut()}
+            className="m-0 w-full justify-start"
+          >
             Log out
           </Button>
         </DropdownMenuItem>
